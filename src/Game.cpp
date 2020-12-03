@@ -4,6 +4,7 @@
 #include "SDL_image.h"
 #include "Entity.h"
 #include "Game.h"
+#include "core/Event.h"
 
 Game::Game(int width, int height, const char* title){
   this->m_LastTime = std::chrono::high_resolution_clock::now();
@@ -39,10 +40,13 @@ int Game::init(){
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
-  loadEntities();
-
   return 0;
 };
+
+void Game::PushLayer(Core::Layer* layer){
+  m_LayerStack.PushLayer(layer);
+  layer->OnAttach();
+}
 
 void Game::run(){
   running = true;
@@ -52,6 +56,7 @@ void Game::run(){
     float dt = std::chrono::duration<float, std::chrono::seconds::period>(now - m_LastTime).count();
     m_LastTime = now;
 
+    
     handleEvents();
     update(dt);
     render();
@@ -61,21 +66,29 @@ void Game::run(){
 }
 
 void Game::handleEvents(){
-  SDL_Event event;
-  while (SDL_PollEvent(&event)) {
-    if (event.type == SDL_QUIT) {
+  SDL_Event sdlEvent;
+  while (SDL_PollEvent(&sdlEvent)) {
+    if (sdlEvent.type == SDL_QUIT) {
       running = false;
       return;
     }
     else{
-      character->handleEvent(event);
+      Core::Event event(sdlEvent);
+      /* character->handleEvent(event); */
+      for(auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it){
+        if(event.isHandled()) break;
+        (*it)->OnEvent(event);
+      }
     }
   }
 }
+
 void Game::update(float dt){
-  house->update(dt);
-  character->update(dt);
+  for(Core::Layer* layer : m_LayerStack){
+    layer->OnUpdate(dt);
+  }
 }
+
 void Game::render(){
   SDL_RenderClear(renderer);
 
@@ -83,21 +96,14 @@ void Game::render(){
   SDL_Rect screenRect = { 0, 0, width, height };
   SDL_RenderDrawRect(renderer, &screenRect);
 
-  house->render(renderer);
-  character->render(renderer);
+  for(auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it){
+    (*it)->Render(renderer);
+  }
 
   SDL_RenderPresent(renderer);
 }
 
-void Game::loadEntities(){
-  TextureDefinition houseTexture = loadSingleTexture("Assets/Images/House.png");
-  TextureDefinition charTexture = loadSingleTexture("Assets/Images/Char.png");
-
-  house = new Entity(houseTexture, 0.0f, 0.0f);
-  character = new Entity(charTexture,  300.f, 300.0f);
-}
-
-TextureDefinition Game::loadSingleTexture(const char* textureName){
+TextureDefinition Game::LoadSingleTexture(const char* textureName){
   SDL_Surface* loadedSurface = IMG_Load(textureName);
   if(loadedSurface == nullptr){
     printf("ERROR, Unable to load %s, Error: %s\n", "", IMG_GetError());

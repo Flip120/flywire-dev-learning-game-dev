@@ -1,3 +1,6 @@
 #!/bin/bash
 
-make && ./bin/Debug/Game 
+rm -r obj/
+rm -r bin/
+make
+./bin/Debug/Game 

@@ -78,9 +78,15 @@ OBJECTS :=
 
 GENERATED += $(OBJDIR)/Entity.o
 GENERATED += $(OBJDIR)/Game.o
+GENERATED += $(OBJDIR)/Layer.o
+GENERATED += $(OBJDIR)/LayerStack.o
+GENERATED += $(OBJDIR)/Player.o
 GENERATED += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/Entity.o
 OBJECTS += $(OBJDIR)/Game.o
+OBJECTS += $(OBJDIR)/Layer.o
+OBJECTS += $(OBJDIR)/LayerStack.o
+OBJECTS += $(OBJDIR)/Player.o
 OBJECTS += $(OBJDIR)/main.o
 
 # Rules
@@ -145,13 +151,22 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/Entity.o: Entity.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Game.o: Game.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: main.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Entity.o: src/Entity.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Game.o: src/Game.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Player.o: src/Player.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Layer.o: src/core/Layer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LayerStack.o: src/core/LayerStack.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

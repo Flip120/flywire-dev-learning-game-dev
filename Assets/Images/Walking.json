@@ -1,0 +1,54 @@
+{ "frames": {
+   "Chars #Walk 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   "Chars #Walk 1.aseprite": {
+    "frame": { "x": 16, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   "Chars #Walk 2.aseprite": {
+    "frame": { "x": 32, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   "Chars #Walk 3.aseprite": {
+    "frame": { "x": 48, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.24",
+  "image": "Walking.png",
+  "format": "RGBA8888",
+  "size": { "w": 64, "h": 16 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "Idle", "from": 0, "to": 1, "direction": "forward" },
+   { "name": "Walk", "from": 2, "to": 5, "direction": "forward" },
+   { "name": "F-Idle", "from": 6, "to": 9, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Bg", "opacity": 255, "blendMode": "normal" },
+   { "name": "Chars", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
