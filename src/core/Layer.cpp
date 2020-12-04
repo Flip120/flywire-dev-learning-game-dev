@@ -11,5 +11,5 @@ void Core::Layer::SortEntities(){
 }
 
 bool Core::Layer::SortByVerticalPosition(Entity* entity1, Entity* entity2){
-  return entity1->y < entity2->y;
+  return entity1->y + entity1->textureDefinition.height < entity2->y + entity2->textureDefinition.height;
 }

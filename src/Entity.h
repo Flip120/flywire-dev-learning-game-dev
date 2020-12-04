@@ -14,7 +14,7 @@ public:
     virtual void Render(SDL_Renderer* renderer);
 
     float x, y;
-protected:
     TextureDefinition textureDefinition;
+protected:
     bool flipX = false;
 };
