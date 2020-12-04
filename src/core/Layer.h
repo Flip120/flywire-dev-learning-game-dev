@@ -37,6 +37,7 @@ namespace Core {
       };
 
       virtual void Render(SDL_Renderer* renderer){
+        SortEntities();
         for(Entity* entity : m_Entities) {
           entity->Render(renderer);
         }
@@ -49,5 +50,8 @@ namespace Core {
     private:
       std::vector<Entity*> m_Entities;
       std::string m_DebugName;
+
+      void SortEntities();
+      static bool SortByVerticalPosition(Entity* entity1, Entity* entity2);
   };
 }

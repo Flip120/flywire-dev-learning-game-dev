@@ -13,8 +13,8 @@ public:
     virtual void OnUpdate(float deltaTime) {};
     virtual void Render(SDL_Renderer* renderer);
 
+    float x, y;
 protected:
     TextureDefinition textureDefinition;
-    float x, y;
     bool flipX = false;
 };

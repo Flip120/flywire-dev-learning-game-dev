@@ -11,11 +11,9 @@ int main(void) {
     Game* game = new Game(1600, 900, "Dev learnings game");
     int exitCode = game->init();
 
-    Core::Layer* buildingsLayer = new Core::Layer("Buildings");
-    Core::Layer* charactersLayer = new Core::Layer("Characters");
+    Core::Layer* elementsLayer = new Core::Layer("Characters");
     Core::Layer* roadsLayer = new Core::Layer("Roads");
     Core::Layer* groundLayer = new Core::Layer("Ground");
-    Core::Layer* treesLayer = new Core::Layer("Trees");
     Core::Layer* skyLayer = new Core::Layer("Sky");
 
     TextureDefinition roadsTexture = game->LoadSingleTexture("Assets/Images/layer-roads.png");
@@ -34,22 +32,26 @@ int main(void) {
 
     TextureDefinition houseTexture = game->LoadSingleTexture("Assets/Images/Buildings.png");
     Entity* house = new Entity(houseTexture, 0.0f, 0.0f);
-    buildingsLayer->PushEntity(house);
+    elementsLayer->PushEntity(house);
 
     TextureDefinition soldier1Texture = game->LoadSingleTexture("Assets/Images/Soldier1.png");
     Entity* soldier1 = new Entity(soldier1Texture, 5.0f, 18.0f);
-    charactersLayer->PushEntity(soldier1);
+    elementsLayer->PushEntity(soldier1);
 
     TextureDefinition idleTexture = game->LoadSingleTexture("Assets/Images/Idle.png");
     Player* player = new Player(idleTexture, 100.f, 100.0f);
     TextureDefinition womanTexture = game->LoadSingleTexture("Assets/Images/Woman.png");
     Entity* woman = new Entity(womanTexture, 40.0f, 60.0f);
-    charactersLayer->PushEntity(player);
-    charactersLayer->PushEntity(woman);
+    elementsLayer->PushEntity(player);
+    elementsLayer->PushEntity(woman);
+
+    TextureDefinition mountainTexture = game->LoadSingleTexture("Assets/Images/Mountain.png");
+    Entity* mountain = new Entity(mountainTexture, 25.0f, 95.0f);
+    elementsLayer->PushEntity(mountain);
 
     TextureDefinition treesTexture = game->LoadSingleTexture("Assets/Images/Trees.png");
     Entity* trees = new Entity(treesTexture, 100.0f, 65.0f);
-    treesLayer->PushEntity(trees);
+    elementsLayer->PushEntity(trees);
     
     TextureDefinition cloudTexture = game->LoadSingleTexture("Assets/Images/Cloud1.png");
     TextureDefinition cloudTexture2 = game->LoadSingleTexture("Assets/Images/Cloud2.png");
@@ -62,9 +64,7 @@ int main(void) {
 
     game->PushLayer(roadsLayer);
     game->PushLayer(groundLayer);
-    game->PushLayer(buildingsLayer);
-    game->PushLayer(charactersLayer);
-    game->PushLayer(treesLayer);
+    game->PushLayer(elementsLayer);
     game->PushLayer(skyLayer);
     game->run();
         
