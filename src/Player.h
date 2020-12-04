@@ -10,11 +10,11 @@ class Player : public Entity {
     Player(TextureDefinition textureDefinition, float x, float y)
       : Entity(textureDefinition, x, y){};
 
-    void OnUpdate(float deltaTime) override;
     void HandleEvent(Core::Event& wrappedEvent) override;
+    void OnUpdate(float deltaTime) override;
 
   private:
     float m_SpeedX = 0;
     float m_SpeedY = 0;
-    const int MOVEMENT_SPEED = 50;
+    const int MOVEMENT_SPEED = 1;
 };

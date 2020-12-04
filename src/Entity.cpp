@@ -23,11 +23,12 @@ void Entity::Render(SDL_Renderer *renderer){
     SDL_Rect dstRect {
         (int)x,
         (int)y,
-        textureDefinition.width * 4,
-        textureDefinition.height * 4
+        textureDefinition.width,
+        textureDefinition.height
     };
 
     SDL_Point center = { (int)(textureDefinition.width * 0.5f), (int)(textureDefinition.height * 0.5f) };
+    /* SDL_Point center = { 0, 0 }; */
     
     SDL_RendererFlip flip = flipX ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
     SDL_RenderCopyEx(renderer, textureDefinition.texture, &srcRect, &dstRect, 0, &center, flip);

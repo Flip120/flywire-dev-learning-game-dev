@@ -8,8 +8,8 @@ public:
     Entity(TextureDefinition textureDefiniton, float x, float y);
     ~Entity();
     
-    virtual void OnUpdate(float deltaTime) {};
     virtual void HandleEvent(Core::Event& event) {};
+    virtual void OnUpdate(float deltaTime) {};
     virtual void Render(SDL_Renderer* renderer);
 
 protected:

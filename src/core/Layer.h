@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "SDL.h"
 #include "Event.h"
 #include "../Entity.h"
@@ -13,7 +14,9 @@ namespace Core {
       Layer(const std::string& name = "Layer");
       virtual ~Layer() = default;
 
-      virtual void OnAttach() {};
+      virtual void OnAttach() {
+        std::cout << "Layer " << m_DebugName << " attached" << std::endl;
+      };
 
       virtual void OnDetach() {
         for(Entity* entity : m_Entities) {

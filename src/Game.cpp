@@ -39,13 +39,16 @@ int Game::init(){
 
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+  SDL_RenderSetScale(renderer, 6, 6);
+
+  std::cout << "============================" << std::endl;
+  std::cout << "Game initiated" << std::endl;
 
   return 0;
 };
 
 void Game::PushLayer(Core::Layer* layer){
   m_LayerStack.PushLayer(layer);
-  layer->OnAttach();
 }
 
 void Game::run(){
@@ -74,7 +77,6 @@ void Game::handleEvents(){
     }
     else{
       Core::Event event(sdlEvent);
-      /* character->handleEvent(event); */
       for(auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it){
         if(event.isHandled()) break;
         (*it)->OnEvent(event);
@@ -92,7 +94,7 @@ void Game::update(float dt){
 void Game::render(){
   SDL_RenderClear(renderer);
 
-  SDL_SetRenderDrawColor(renderer, 60, 150, 99, 255);
+  SDL_SetRenderDrawColor(renderer, 130, 161, 124, 255);
   SDL_Rect screenRect = { 0, 0, width, height };
   SDL_RenderDrawRect(renderer, &screenRect);
 
