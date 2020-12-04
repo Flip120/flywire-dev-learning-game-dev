@@ -37,7 +37,8 @@ int Game::init(){
       flags
       );
 
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  int renderFlags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
+  renderer = SDL_CreateRenderer(window, -1, renderFlags);
   SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
   SDL_RenderSetScale(renderer, 6, 6);
 
@@ -59,12 +60,9 @@ void Game::run(){
     float dt = std::chrono::duration<float, std::chrono::seconds::period>(now - m_LastTime).count();
     m_LastTime = now;
 
-    
     handleEvents();
     update(dt);
     render();
-
-    auto stopTime = std::chrono::high_resolution_clock::now();
   }
 }
 

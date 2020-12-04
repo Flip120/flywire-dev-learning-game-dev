@@ -16,5 +16,5 @@ class Player : public Entity {
   private:
     float m_SpeedX = 0;
     float m_SpeedY = 0;
-    const int MOVEMENT_SPEED = 1;
+    const float MOVEMENT_SPEED = 30;
 };

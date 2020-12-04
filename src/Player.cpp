@@ -1,8 +1,9 @@
 #include "Player.h"
+#include <iostream>
 
 void Player::OnUpdate(float deltaTime) {
-  x += m_SpeedX * deltaTime;
-  y += m_SpeedY * deltaTime;
+  x += (m_SpeedX * deltaTime);
+  y += (m_SpeedY * deltaTime);
 }
 
 void Player::HandleEvent(Core::Event& wrappedEvent) {
