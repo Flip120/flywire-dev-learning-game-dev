@@ -92,7 +92,7 @@ void Game::update(float dt){
 void Game::render(){
   SDL_RenderClear(renderer);
 
-  SDL_SetRenderDrawColor(renderer, 130, 161, 124, 255);
+  SDL_SetRenderDrawColor(renderer, 127, 167, 62, 255);
   SDL_Rect screenRect = { 0, 0, width, height };
   SDL_RenderDrawRect(renderer, &screenRect);
 

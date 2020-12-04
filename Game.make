@@ -76,12 +76,14 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/Cloud.o
 GENERATED += $(OBJDIR)/Entity.o
 GENERATED += $(OBJDIR)/Game.o
 GENERATED += $(OBJDIR)/Layer.o
 GENERATED += $(OBJDIR)/LayerStack.o
 GENERATED += $(OBJDIR)/Player.o
 GENERATED += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/Cloud.o
 OBJECTS += $(OBJDIR)/Entity.o
 OBJECTS += $(OBJDIR)/Game.o
 OBJECTS += $(OBJDIR)/Layer.o
@@ -152,6 +154,9 @@ endif
 # #############################################
 
 $(OBJDIR)/main.o: main.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Cloud.o: src/Cloud.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Entity.o: src/Entity.cpp
